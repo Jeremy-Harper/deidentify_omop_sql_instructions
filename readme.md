@@ -1,4 +1,5 @@
 # To deidentify an OMOP dataset you need a few items to take place. 
+
 1.	Any source field needs to be zeroed out
 2.	All dates associated with a person must be skewed
 3.	Any zip code needs to be mapped to the 3 digit equivalent
