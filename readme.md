@@ -141,3 +141,5 @@ SELECT visit_occurrence_id, 1.0 + floor(9223372036854775807 * RAND(convert(varbi
 INTO OMOP.Crosswalk_visit_occurrence
 FROM OMOP.visit_occurrence
 ```
+
+# OMOP has this to say about considerations on deidentifying the dataset https://ohdsi.github.io/CommonDataModel/cdmPrivacy.html
