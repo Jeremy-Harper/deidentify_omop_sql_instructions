@@ -86,9 +86,10 @@ WHERE pr.person_id = person.id
 
 
 
-##3. Deidentifying location ID
+## 3. Deidentifying location ID
 
-###Step 1. Locations come with 3, 5 or 9 digit zip codes in OMOP. Each one gets assigned a location_id. You cannot just concatenate the location ID to the first three for 5 and 9 because you can still successfully guess based on population size the original zip codes. Instead we do something similar to the skewed dates. Step 1 we build a table to contain a crosswalk. The original ID’s and the location_id for the three digit zip
+### Step 1. Locations come with 3, 5 or 9 digit zip codes in OMOP. 
+Each one gets assigned a location_id. You cannot just concatenate the location ID to the first three for 5 and 9 because you can still successfully guess based on population size the original zip codes. Instead we do something similar to the skewed dates. Step 1 we build a table to contain a crosswalk. The original ID’s and the location_id for the three digit zip
 
 
 SELECT location_id as source_location_id, location_id as target_location_id
@@ -98,7 +99,7 @@ LEFT JOIN LOCATION as so on SUBSTRING(fo.location_id, 1, 3)=so.zip
 	
 
 
-###Step 2 update the original location_id’s with the crosswalk where it maps to the three digit zip
+### Step 2 update the original location_id’s with the crosswalk where it maps to the three digit zip
 
 UPDATE person
 SET location_id = (
@@ -118,7 +119,7 @@ WHERE pr.location_id = source_location_id
 );
 
 
-##4.  If your primary key's are a direct copy from your EHR you need to create a crosswalk and overwrite each
+## 4.  If your primary key's are a direct copy from your EHR you need to create a crosswalk and overwrite each
 
 
 I highly recommend finding a smarter way to compute random numbers. Use referential integrity on both columns to ensure you don't get a duplicate ID number
